@@ -1,0 +1,43 @@
+@model MyWebApp.Models.DiaryWeatherViewModel
+
+@{
+    ViewData["Title"] = "日記一覧";
+}
+
+<h2>日記一覧</h2>
+
+<form asp-action="Add" method="post">
+    <textarea name="content" rows="3" cols="50" placeholder="今日の日記を書いてください"></textarea><br />
+    <button type="submit">追加</button>
+</form>
+
+<hr />
+
+<ul>
+@foreach (var entry in Model.Diaries)
+{
+    <li>
+        <strong>@entry.Date.ToString("yyyy/MM/dd HH:mm")</strong><br />
+        @entry.Content
+    </li>
+}
+</ul>
+
+// ここに天気情報を表示するセクションを追加
+<h3>天気情報</h3>
+<form method="post" asp-action="GetWeather">
+    <input type="text" name="city" placeholder="都市名を入力" />
+    <button type="submit">取得</button>
+</form>
+<div id="weather-info">
+    @if (Model.Weather != null)
+    {
+        <p>都市: @Model.Weather.City</p>
+        <p>温度: @Model.Weather.Temperature</p>
+        <p>天気: @Model.Weather.Condition</p>
+    }
+    else
+    {
+        <p>天気情報はまだ取得されていません。</p>
+    }
+</div>

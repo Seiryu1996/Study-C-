@@ -1,0 +1,34 @@
+@model List<MyWebApp.Models.Todo>
+
+@{
+    ViewData["Title"] = "Todo一覧";
+}
+
+<h2>Todo一覧</h2>
+
+<form asp-action="Add" method="post">
+    <input type="text" name="title" placeholder="新しいTodoを入力" required />
+    <button type="submit">追加</button>
+</form>
+
+<hr />
+
+<ul>
+@foreach (var todo in Model)
+{
+    <li>
+        @if (todo.IsCompleted)
+        {
+            <s>@todo.Title</s>
+        }
+        else
+        {
+            @todo.Title
+            <form asp-action="Complete" method="post" style="display:inline;">
+                <input type="hidden" name="id" value="@todo.Id" />
+                <button type="submit">完了</button>
+            </form>
+        }
+    </li>
+}
+</ul>
