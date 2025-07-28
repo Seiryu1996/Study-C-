@@ -1,2 +1,43 @@
-// Env
+# Env
 appsettings.json
+
+# output
+/bin/
+/obj/
+
+# user
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# VSCode
+.vscode/
+
+# Rider
+.idea/
+
+# ASP.NET Core
+*.db
+*.log
+appsettings.Development.json
+.env
+
+# NuGet
+*.nupkg
+*.snupkg
+packages/
+
+# tmp
+*.tmp
+*.temp
+*.bak
+*.old
+
+# Mac/Linux
+.DS_Store
+Thumbs.db
+
+# other
+*.swp
+*.swn
